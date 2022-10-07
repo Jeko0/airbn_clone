@@ -62,9 +62,8 @@
         </div>
       </div>
 
-      <%
-=begin%>
- <div class="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
+   
+      <div class="relative z-0 flex-1 px-2 flex items-center justify-center sm:absolute sm:inset-0">
         <div class="w-full sm:max-w-xs">
           <label for="search" class="sr-only">Search</label>
           <div class="relative">
@@ -77,15 +76,12 @@
           </div>
         </div>
       </div> 
-<%
-=end%>
 
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <button 
           type="button" 
           class="rounded-full hover:bg-gray-200 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <span class="sr-only">View notifications</span>
-          <!-- Heroicon name: outline/bell -->
           <svg 
             class="h-6 w-6" 
             xmlns="http://www.w3.org/2000/svg" 
@@ -120,7 +116,7 @@
           </div>
 
           <div 
-            class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" 
+            class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-200" 
             id="menu-dropdown-items"
             role="menu" 
             aria-orientation="vertical"  
@@ -133,13 +129,48 @@
             data-transition-leave-start="transform opacity-100 scale-100"
             data-transition-leave-end="transform opacity-0 scale-95"
             >
-            <!-- Active: "bg-gray-100", Not Active: "" -->
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+            <div class="py-1" role="none">
+              <a 
+                href="#" 
+                data-header-target="userAuthLink"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                role="menuitem" 
+                tabindex="-1" 
+                id="user-menu-item-0">Sign up</a>
+              <a 
+                href="#" 
+                data-header-target="userAuthLink"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                role="menuitem" 
+                tabindex="-1" 
+                id="user-menu-item-1">Log in</a>
+            </div>
+
+            <div class="py-1" role="none">
+              <a 
+                href="#" 
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                role="menuitem" 
+                tabindex="-1" 
+                id="user-menu-item-2">Host your home </a>
+              <a 
+                href="#" 
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                role="menuitem" 
+                tabindex="-1" 
+                id="user-menu-item-3">Host an experience</a>
+              <a 
+                href="#" 
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                role="menuitem" 
+                tabindex="-1" 
+                id="user-menu-item-4">Help</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </nav>
+
+<%= render "shared/modal" %>
