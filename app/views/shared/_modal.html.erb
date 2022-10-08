@@ -35,7 +35,28 @@
         >
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:mt-0">
-            <h3 class="text-md font-medium leading-6 text-gray-900 text-center mb-4" id="modal-title">Log in or Sing up</h3>
+            <div class="flex">
+              <div 
+                class="flex-none cursor-pointer"
+                data-modal-target="closeButton"
+                >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke-width="1.5" 
+                  stroke="currentColor" 
+                  class="w-6 h-6 float-left">
+                    <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </div>
+              <div class="grow">
+                <h3 class="pr-7 text-md leading-6 font-medium text-gray-900 text-center mb-4" id="modal-title">Log in or Sing up</h3>
+              </div>
+            </div>
             <!--divider-->
             <div class="relative">
               <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -56,13 +77,13 @@
                   name="name" 
                   id="name" 
                   class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" 
-                  placeholder="John@doe.com">
+                  placeholder="Email">
               </div>
             </div>
           </div>
           <div class="mt-5 sm:mt-6">
             <button 
-              class="w-full inline-flex justify-center items-center font-semibold  py-2 px-4 text-gray-700 border border-black text-white rounded-md airbnb-pinish-gradient">
+              class="w-full inline-flex justify-center items-center font-semibold  py-2 px-4 text-gray-700 border border-black text-white rounded-md airbnb-pinkish-gradient">
               Continue
             </button>   
           </div>
