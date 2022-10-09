@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-# froze_string_literal: true
-
 module Api
-  class UsersController < ApplicationController
+  class UsersEmailController < ApplicationController
     def show
-      user = User.find(params[:id])
+      user = User.find_by!(email: params[:email])
 
       respond_to do |format|
         format.json do
