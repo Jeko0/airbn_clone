@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   namespace :api do 
-    resources :users, only: :show
+    get "/users_email" => "users_email#show", as: :users_email
   end
 end

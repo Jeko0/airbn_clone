@@ -52,7 +52,7 @@
       </div>
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex flex-shrink-0 items-center">
-          <%= link_to root_path, class: "logo-link" do %>
+          <%= link_to root_path, class: "logo-link z-20" do %>
             <svg 
               width="102" 
               height="32">
@@ -173,4 +173,4 @@
   </div>
 </nav>
 
-<%= render "shared/modal" %>
+<%= render "shared/modal", modal_content: "home/user_auth_form"%>
