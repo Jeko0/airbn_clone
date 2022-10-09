@@ -35,7 +35,9 @@
     
     <div class="pt-4">
       <h4 class="text-2xl leading-6 text-gray-900 mt-2 mb-6 font-medium">Welcome to Airbnb</h4>
-      <div class="mt-6 border border-black rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-black focus-within:border-black">
+      <div 
+        data-users-email-auth-target="emailWrapper"
+        class="relative mt-6 border border-black rounded-md px-3 py-2 shadow-sm">
         <label 
           for="email" 
           class="block text-xs font-medium text-gray-900">Email</label>
@@ -46,7 +48,15 @@
           id="email" 
           class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" 
           placeholder="Email">
+        <div 
+          data-users-email-auth-target="invalidSvg "
+          class="hidden absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+         <svg class="h-5 w-5 text-red-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+         </svg>
+        </div>
       </div>
+      <p data-users-email-auth-target="errorMessage" class="hidden mt-2 text-sm text-red-600" id="email-error">Email is required</p>
     </div>
   </div>
   <div class="mt-5 sm:mt-6">
