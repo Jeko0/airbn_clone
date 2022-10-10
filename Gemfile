@@ -21,7 +21,8 @@ gem 'sass-rails', '~> 6.0'
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "factory_bot_rails"
-  gem "pry-rails"
+  #gem "pry-rails"
+  gem 'faker', git:  'https://github.com/faker-ruby/faker.git', branch: 'main'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
 end
 
