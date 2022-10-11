@@ -10,42 +10,37 @@ export default class extends Controller {
       isEmpty(this.element.dataset.latitude) &&
       isEmpty(this.element.dataset.longitude)
     ) {
-      window.navigator.geolocation.getCurrentPosition((pos) => {
-        this.element.dataset.latitude = pos.coords.latitude;
-        this.element.dataset.longitude = pos.coords.longitude;
-
-        this.propertyTargets.forEach((propTarget) => {
-          let distanceFrom = getDistance(
-            {
-              latitude: pos.coords.latitude,
-              longitude: pos.coords.longitude,
-            },
-
-            {
-              latitude: propTarget.dataset.latitude,
-              longitude: propTarget.dataset.longitude,
-            }
-          );
-
-          propTarget.querySelector("[data-distance]").innerHTML = `${Math.round(convertDistance(distanceFrom, "km"))} kilometers away`;
-        });
+      window.navigator.geolocation.getCurrentPosition((position) => {
+        this.setUserCoordinates(position.coords);
+        this.setDistanceText();
       });
     } else {
-      this.propertyTargets.forEach((propTarget) => {
-        let distanceFrom = getDistance(
-          {
-            latitude: this.element.dataset.latitude,
-            longitude: this.element.dataset.longitude,
-          },
-
-          {
-            latitude: propTarget.dataset.latitude,
-            longitude: propTarget.dataset.longitude,
-          }
-        );
-
-        propTarget.querySelector("[data-distance]").innerHTML = `${Math.round(convertDistance(distanceFrom, "km"))} kilometers away`;
-      });
+      this.setDistanceText();
     }
+  }
+
+  setUserCoordinates(coordinates) {
+    this.element.dataset.latitude = coordinates.latitude;
+    this.element.dataset.longitude = coordinates.longitude;
+  }
+
+  getUserCoordinates() {
+    return {
+      latitude: this.element.dataset.latitude,
+      longitude: this.element.dataset.longitude,
+    };
+  }
+
+  setDistanceText() {
+    this.propertyTargets.forEach((propTarget) => {
+      let distanceFrom = getDistance(
+        this.getUserCoordinates(), 
+        {
+        latitude: propTarget.dataset.latitude,
+        longitude: propTarget.dataset.longitude,
+      });
+
+      propTarget.querySelector("[data-distance]").innerHTML = `${Math.round(convertDistance(distanceFrom, "km"))} kilometers away`;
+    });
   }
 }
