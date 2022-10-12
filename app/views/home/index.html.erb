@@ -12,16 +12,22 @@
       data-latitude="<%= property.latitude %>"
       data-longitude="<%= property.longitude %>"
       >
-      <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offest-gray-100">
-        <img src="https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w=0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q=" alt="" class="rounded-md">
+      <div class="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offest-gray-100 focus:ring-indigo-500 overflow-hidden">
+        <%= image_tag property.default_image, class: "object-cover pointer-events-none group-hover:opacity-75" %>
         <button type="button" class="absolute inset-0 focus:outline-none">
           <span class="sr-only">View Details</span>
         </button>
       </div>
-      <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-event-none"><%= property.city %>, <%= property.state %>, <%= property.country %></p>
+      <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-event-none">
+        <%= property.city %>, <%= property.state %>, <%= property.country %>
+      </p>
       <p data-distance class="block text-sm font-medium text-gray-500 truncate pointer-event-none"></p>
       <p class="block text-sm font-medium text-gray-500 truncate pointer-event-none">Jun 19 - 24</p>
-      <p class="block text-sm font-medium text-gray-500 truncate pointer-event-none"><%= humanized_money_with_symbol(property.price) %> per night</p>
+      <p class="block text-sm font-medium text-gray-500 truncate pointer-event-none">
+        <span class="text-black">
+          <%= humanized_money_with_symbol(property.price) %> per night
+        </span>
+      </p>
     </li>
     <% end %>
   </ul>

@@ -11,6 +11,10 @@ RSpec.describe Property, type: :model do
     it { should validate_presence_of(:country) }
   end
 
+  context "Associations" do
+    it { should have_many_attached(:images) } 
+  end
+
   context "money_rails" do
     it { is_expected.to monetize(:price).allow_nil }
   end
