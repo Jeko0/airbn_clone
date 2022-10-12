@@ -13,6 +13,7 @@ RSpec.describe Property, type: :model do
 
   context "Associations" do
     it { should have_many_attached(:images) } 
+    it { should have_many(:reviews) } 
   end
 
   context "money_rails" do
