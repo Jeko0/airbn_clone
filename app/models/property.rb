@@ -9,6 +9,8 @@ class Property < ApplicationRecord
   
   has_many_attached :images, dependent: :destroy
 
+  has_many :reviews, as: :reviewable
+
   monetize :price_cents, allow_nil: true
   
   geocoded_by :address
@@ -21,5 +23,9 @@ class Property < ApplicationRecord
 
   def default_image 
     images.first
+  end
+
+  def average_rating 
+    reviews.average(:rating).round(2)
   end
 end
