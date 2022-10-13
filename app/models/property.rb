@@ -9,6 +9,8 @@ class Property < ApplicationRecord
   
   has_many_attached :images, dependent: :destroy
 
+  has_many :reviews, as: :reviewable
+
   monetize :price_cents, allow_nil: true
   
   geocoded_by :address
