@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do 
     get "/users_email" => "users_email#show", as: :users_email
+    resources :favorites, only: [:create, :destroy]
   end
 end
+ 
