@@ -14,6 +14,8 @@ RSpec.describe Property, type: :model do
   context "Associations" do
     it { should have_many_attached(:images) } 
     it { should have_many(:reviews) } 
+    it { should have_many(:favorites).dependent(:destroy) } 
+    it { should have_many(:favorited_users).through(:favorites).source(:user) } 
   end
 
   context "money_rails" do
