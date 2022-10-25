@@ -15,7 +15,7 @@
         </span>
       </div>
       <div>
-        <%= link_to "asd", class: "mr-4"  do %>
+        <%= link_to "", data: { controller: "share", action: "share#share" }, class: "mr-4"  do %>
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             fill="none" 
@@ -304,3 +304,5 @@
     </div>
   </div>
 </div>
+
+<%= render "shared/modal", modal_trigger_id: "share-modal-trigger", modal_content: "properties/share_property" %>
