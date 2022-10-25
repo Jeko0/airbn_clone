@@ -4,7 +4,9 @@ import axios from "axios";
 export default class extends Controller {
   HEADERS = { ACCEPT: "application/json" };
 
-  mark() {
+  mark(e) {
+    e.preventDefault();
+    
     if (this.element.dataset.loggedInUser === "false") {
       return document
         .querySelector('[data-header-target="userAuthLink"]')
@@ -41,7 +43,7 @@ export default class extends Controller {
       .then((response) => {
         this.element.dataset.marked = "true";
         this.element.dataset.favoriteId = response.data.id;
-        this.element.setAttribute("fill", "red");
+        this.element.setAttribute("fill", this.element.dataset.markedColor);
       });
   }
 
@@ -53,7 +55,7 @@ export default class extends Controller {
       .then((response) => {
         this.element.dataset.marked = "false";
         this.element.dataset.favoriteId = "";
-        this.element.setAttribute("fill", "#CED4DA");
+        this.element.setAttribute("fill", this.element.dataset.unmarkedColor);
       });
   }
 }
