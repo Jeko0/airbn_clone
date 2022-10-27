@@ -7,5 +7,6 @@ FactoryBot.define do
     city { Faker::Address.city }
     state { Faker::Address.state }
     country { Faker::Address.country }
+    average_rating {Faker::Number.decimal(l_digits: 1) }
   end
 end

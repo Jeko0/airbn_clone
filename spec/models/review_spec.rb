@@ -12,5 +12,6 @@ RSpec.describe Review, type: :model do
 
   context "Associations" do
     it { should belong_to(:reviewable) } 
-  end
+    it { should belong_to(:user) } 
+  end 
 end
