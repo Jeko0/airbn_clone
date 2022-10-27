@@ -53,40 +53,34 @@
       <h3 class="sr-only">Recent reviews</h3>
       <div class="flow-root">
         <div class="-my-12 divide-y divide-gray-200">
-          <div class="py-12">
-            <div class="flex items-center">
-              <%= image_tag @property.default_image, class:"h-12 w-12 rounded-full" %>
-              <div class=" ml-2">
-                <h4 class="text-sm font-bold text-gray-900">Emily Selman</h4>
-                <div class="mt-1 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-yellow-400" viewBox="0 0 16 16">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg>
+          <% @property.reviews.includes(:user).limit(6).each do |review| %>
+            <div class="py-12">
+              <div class="flex items-center">
+                <%= image_tag review.user.picture, class: "h-12 w-12 rounded-full" , alt: review.user.full_name %>
+                <div class=" ml-2">
+                  <h4 class="text-sm font-bold text-gray-900"><%= review.user.full_name %></h4>
+                  <div class="mt-1 flex items-center">
+                    <% review_star_classes = ["text-gray-300", "text-gray-300", "text-gray-300", "text-gray-300", "text-gray-300"]
 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-yellow-400" viewBox="0 0 16 16">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg>
+                      review.rating.times do |i|
+                        review_star_classes[i] = "text-yellow-400"
+                      end
+                    %>
 
-
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-yellow-400" viewBox="0 0 16 16">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-yellow-400" viewBox="0 0 16 16">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill text-yellow-400" viewBox="0 0 16 16">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg>
+                    <% review_star_classes.each do |star_class| %>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-5 w-5 <%= star_class %>" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                    <% end %>
+                  </div>
+                  <p class="sr-only"><%= review.rating %> out of 5 starts</p>
                 </div>
-                <p class="sr-only">5 out of 5 starts</p>
+              </div>
+              <div class="mt-4 space-y-6 text-base italic text-gray-600">
+                <p><%= review.body %></p>
               </div>
             </div>
-            <div class="mt-4 space-y-6 text-base italic text-gray-600">
-              <p>lorem ipsum dossithamut samnus spiritus dos actor=s amen!</p>
-            </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
