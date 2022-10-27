@@ -13,7 +13,7 @@
           </svg>
         </span>
         <span>
-         <%= @property.average_rating %> · <%= @property.reviews_count %> reviews | <%= @property.city %>, <%= @property.state %>, <%= @property.country %>
+         <%= @property.average_rating.round(2) %> · <%= @property.reviews_count %> reviews | <%= @property.city %>, <%= @property.state %>, <%= @property.country %>
         </span>
       </div>
       <div>
