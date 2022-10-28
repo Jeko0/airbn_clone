@@ -3,20 +3,49 @@
     <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Private room in vacation home hosted by Vakhtang</h1>
   </div>
 
-  <!-- Options -->
-  <div class="mt-4 lg:mt-0 lg:row-span-3">
+  <!-- reservations controller -->
+  <div
+    data-controller="reservation"
+    data-checkin-date="<%= Date.tomorrow.to_s(:reservation_format) %>"
+    data-checkout-date="<%= (Date.tomorrow + 1.day).to_s(:reservation_format) %>"
+    class="mt-4 lg:mt-0 lg:row-span-3"
+    >
     <div class="mt-10 lg:mt-0">
       <div class="bg-white">
-        <h3 class="text-2xl font-medium text-gray-900">$404 night</h3>
+        <h3 class="text-2xl font-medium text-gray-900"><%= humanized_money_with_symbol(@property.price) %> night</h3>
 
-        <div class="isolate -space-y-px rounded-md shadow-sm mt-6">
-          <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focush-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="name" class="bloc text-xs font-medium text-gray-900 uppercase">Check-in</label>
-            <input type="text" name="name" id="name" class="block w-full border-0 p-o text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="11/30/2022">
+        <div class="isolate -space-y-px rounded-md shadow-sm mt-6 flex items-center border-2 border-black box-border">
+          <div class="relative border border-black rounded-md w-full rounded-b-none px-3 py-2 focus-within:z-10 focush-within:ring-1 focus-within:ring-black focus-within:border-black">
+            <label 
+              for="name" 
+              class="bloc text-xs font-medium text-gray-900 uppercase">
+              Check-in
+            </label>
+            <input 
+              type="text" 
+              name="name" 
+              id="name" 
+              autocomplete="off"
+              class="block w-full border-0 p-o text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" 
+              placeholder="11/30/2022"
+              data-reservation-target="checkin"
+              >
           </div>
-          <div class="relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focush-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-            <label for="name" class="bloc text-xs font-medium text-gray-900 uppercase">Checkout</label>
-            <input type="text" name="name" id="name" class="block w-full border-0 p-o text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="12/7/2022">
+          <div class="relative border border-black rounded-md w-full rounded-b-none px-3 py-2 focus-within:z-10 focush-within:ring-1 focus-within:ring-black focus-within:border-black">
+            <label 
+              for="name" 
+              class="bloc text-xs font-medium text-gray-900 uppercase">
+              Checkout
+            </label>
+            <input 
+              type="text" 
+              name="name"
+              id="name" 
+              autocomplete="off"
+              class="block w-full border-0 p-o text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" 
+              placeholder="12/7/2022"
+              data-reservation-target="checkout"
+              >
           </div>
         </div>
 
@@ -24,12 +53,12 @@
         </div>
         <dl class="space-y-6 mt-6">
           <div class="flex items-center justify-between">
-            <dt class="text-sm">$445 x 7 nights</dt>
-            <dd class="text-sm font-medium text-gray-900">$5.52</dd>
+            <dt class="text-sm"><%= humanized_money_with_symbol(@property.price) %> x 7 nights</dt>
+            <dd class="text-sm font-medium text-gray-900"><%= humanized_money_with_symbol(@property.price * 7) %></dd>
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Cleaning fee</dt>
-            <dd class="text-sm font-medium text-gray-900">$64.00</dd>
+            <dd class="text-sm font-medium text-gray-900"><%= humanized_money_with_symbol(Property::CLEANING_FEE_MONEY) %></dd>
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Service fee</dt>
@@ -42,7 +71,7 @@
         </dl>
 
         <div class="pt-6">
-          <button type="submit" class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white">Order</button>
+          <button type="submit" class="w-full airbnb-pinkish-gradient border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white">Order</button>
         </div>
       </div>
     </div>
