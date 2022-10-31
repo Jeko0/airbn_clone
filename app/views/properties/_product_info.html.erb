@@ -5,10 +5,13 @@
 
   <!-- reservations controller -->
   <div
+    class="mt-4 lg:mt-0 lg:row-span-3"
     data-controller="reservation"
     data-checkin-date="<%= Date.tomorrow.to_s(:reservation_format) %>"
     data-checkout-date="<%= (Date.tomorrow + 1.day).to_s(:reservation_format) %>"
-    class="mt-4 lg:mt-0 lg:row-span-3"
+    data-nightly-price="<%= humanized_money(@property.price) %>"
+    data-service-fee-percentage="<%= Property::SERVICE_FEE_PERCENTAGE %>"
+    data-cleaning-fee="<%= humanized_money(Property::CLEANING_FEE_MONEY) %>"
     >
     <div class="mt-10 lg:mt-0">
       <div class="bg-white">
@@ -53,8 +56,8 @@
         </div>
         <dl class="space-y-6 mt-6">
           <div class="flex items-center justify-between">
-            <dt class="text-sm"><%= humanized_money_with_symbol(@property.price) %> x 7 nights</dt>
-            <dd class="text-sm font-medium text-gray-900"><%= humanized_money_with_symbol(@property.price * 7) %></dd>
+            <dt class="text-sm"><%= humanized_money_with_symbol(@property.price ) %> x <span data-reservation-target="numberOfNights">0</span></dt>
+            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="nigtlyTotal">0</span></dd>
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Cleaning fee</dt>
@@ -62,16 +65,16 @@
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Service fee</dt>
-            <dd class="text-sm font-medium text-gray-900">$5.00</dd>
+            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="serviceFee" ></span></dd>
           </div>
           <div class="flex items-center justify-between border-t border-gray-200 pt-6">
             <dt class="text-sm">Total</dt>
-            <dd class="text-sm font-medium text-gray-900">$75.52</dd>
+            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="totalCost">0</span></dd>
           </div>
         </dl>
 
         <div class="pt-6">
-          <button type="submit" class="w-full airbnb-pinkish-gradient border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white">Order</button>
+          <button type="submit" class="w-full airbnb-pinkish-gradient border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white">Confirm Order</button>
         </div>
       </div>
     </div>
