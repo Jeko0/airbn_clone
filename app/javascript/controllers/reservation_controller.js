@@ -59,7 +59,7 @@ export default class extends Controller {
 
   calculateServiceFee() {
     return (
-      this.calculateNightlyTotal() * this.element.dataset.serviceFeePercentage
+      +this.calculateNightlyTotal() * this.element.dataset.serviceFeePercentage
     ).toFixed(2);
   }
 
@@ -100,7 +100,7 @@ export default class extends Controller {
       checkout_date: this.checkoutTarget.value,
       nightly_total: this.calculateNightlyTotal(),
       cleaning_fee: this.element.dataset.cleaningFee,
-      service_fee: this.element.dataset.serviceFee,
+      service_fee: this.calculateServiceFee(),
       total_cost: this.calculateTotal(),
     };
 
