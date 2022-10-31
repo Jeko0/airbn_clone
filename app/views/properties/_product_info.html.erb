@@ -57,7 +57,7 @@
         <dl class="space-y-6 mt-6">
           <div class="flex items-center justify-between">
             <dt class="text-sm"><%= humanized_money_with_symbol(@property.price ) %> x <span data-reservation-target="numberOfNights">0</span></dt>
-            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="nigtlyTotal">0</span></dd>
+            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="nigtlyTotal">0.00</span></dd>
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Cleaning fee</dt>
@@ -65,16 +65,23 @@
           </div>
           <div class="flex items-center justify-between">
             <dt class="text-sm">Service fee</dt>
-            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="serviceFee" ></span></dd>
+            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="serviceFee" >0.00</span></dd>
           </div>
           <div class="flex items-center justify-between border-t border-gray-200 pt-6">
             <dt class="text-sm">Total</dt>
-            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="totalCost">0</span></dd>
+            <dd class="text-sm font-medium text-gray-900">$<span data-reservation-target="totalCost">0.00</span></dd>
           </div>
         </dl>
 
         <div class="pt-6">
-          <button type="submit" class="w-full airbnb-pinkish-gradient border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white">Confirm Order</button>
+          <button 
+            type="submit" 
+            class="w-full airbnb-pinkish-gradient border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white"
+            data-submit-url="<%= new_property_reservation_path(@property) %>"
+            data-action="reservation#submitReservation"
+            >
+            Confirm Order
+          </button>
         </div>
       </div>
     </div>
