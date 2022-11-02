@@ -7,8 +7,8 @@
   <div
     class="mt-4 lg:mt-0 lg:row-span-3"
     data-controller="reservation"
-    data-checkin-date="<%= Date.tomorrow.to_s(:reservation_format) %>"
-    data-checkout-date="<%= (Date.tomorrow + 1.day).to_s(:reservation_format) %>"
+    data-checkin-date="<%= Date.tomorrow.to_fs(:reservation_format) %>"
+    data-checkout-date="<%= (Date.tomorrow + 1.day).to_fs(:reservation_format) %>"
     data-nightly-price="<%= humanized_money(@property.price) %>"
     data-service-fee-percentage="<%= Property::SERVICE_FEE_PERCENTAGE %>"
     data-cleaning-fee="<%= humanized_money(Property::CLEANING_FEE_MONEY) %>"
