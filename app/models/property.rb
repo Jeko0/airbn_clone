@@ -20,6 +20,7 @@ class Property < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   has_many :reservations, dependent: :destroy
   has_many :reserved_users, through: :reservations, source: :user
+  has_many :payments, through: :reservations
 
   monetize :price_cents, allow_nil: true
 
@@ -43,10 +44,10 @@ class Property < ApplicationRecord
 
   def available_dates
     date_format = '%b %e'
+    next_reservation = reservations.future_reservations.order(checkout_date: :desc).first
 
-    next_reservation = reservations.future_reservations.first
     return Date.tomorrow.strftime(date_format)..Date.today.end_of_year.strftime(date_format) if next_reservation.nil?
 
-    Date.tomorrow.strftime(date_format)..next_reservation.reservation_date.strftime(date_format)
+    next_reservation.checkout_date.strftime(date_format)..Date.today.end_of_year.strftime(date_format)
   end
 end
