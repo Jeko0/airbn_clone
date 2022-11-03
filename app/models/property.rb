@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Property < ApplicationRecord
+  include Countriable
+  
   CLEANING_FEE = 2_000.freeze
   CLEANING_FEE_MONEY = Money.new(CLEANING_FEE)
   SERVICE_FEE_PERCENTAGE = (0.09).freeze
@@ -11,7 +13,7 @@ class Property < ApplicationRecord
   validates :address_1, presence: true
   validates :city, presence: true
   validates :state, presence: true
-  validates :country, presence: true
+  validates :country_code, presence: true
 
   has_many_attached :images, dependent: :destroy
 
@@ -27,9 +29,10 @@ class Property < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: -> { latitude.blank? && longitude.blank? }
 
+
   def address
     # [address_1, address_2, city, state, country].compact.join(', ') faker addresses are not real
-    [state, country].compact.join(', ')
+    [state, country_name].compact.join(', ')
   end
 
   def default_image
