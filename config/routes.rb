@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   end
   
   resources :reservation_payments, only: :create
+  resources :profiles, only: :show
 end
  
