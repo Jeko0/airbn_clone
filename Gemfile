@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 gem "bootsnap", require: false
+gem "country_select", "~> 6.0"
 gem "devise"
 gem "geocoder"
 gem "image_processing", ">= 1.2"
