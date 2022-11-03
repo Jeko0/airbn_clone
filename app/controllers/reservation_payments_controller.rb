@@ -1,32 +1,34 @@
 # frozen_string_literal: true
 
 class ReservationPaymentsController < ApplicationController
-  def create 
-    stripe_card = Stripe::Customer.create_source( 
+  before_action :authenticate_user!
+  
+  def create
+    stripe_card = Stripe::Customer.create_source(
       stripe_customer.id,
       { source: payment_params[:stripeToken] }
     )
-    
+
     charge = Stripe::Charge.create(
       amount: Money.from_amount(BigDecimal(payment_params[:total_cost])).cents,
-      currency: "usd",
+      currency: 'usd',
       source: stripe_card.id,
       customer: stripe_customer.id
     )
 
     reservation = Reservation.create(
-      property: property, 
-      user: user, 
-      checkin_date: Date.strptime(payment_params[:checkin_date], Date::DATE_FORMATS[:reservation_format]), 
+      property: property,
+      user: user,
+      checkin_date: Date.strptime(payment_params[:checkin_date], Date::DATE_FORMATS[:reservation_format]),
       checkout_date: Date.strptime(payment_params[:checkout_date], Date::DATE_FORMATS[:reservation_format])
     )
 
-    payment = Payment.create( 
-      reservation: reservation, 
+    payment = Payment.create(
+      reservation: reservation,
       nightly_total: Money.from_amount(BigDecimal(payment_params[:nightly_total])),
-      cleaning_fee:  Money.from_amount(BigDecimal(payment_params[:cleaning_fee])),
+      cleaning_fee: Money.from_amount(BigDecimal(payment_params[:cleaning_fee])),
       service_fee: Money.from_amount(BigDecimal(payment_params[:service_fee])),
-      total_cost:  Money.from_amount(BigDecimal(payment_params[:total_cost])),
+      total_cost: Money.from_amount(BigDecimal(payment_params[:total_cost])),
       stripe_id: charge.id
     )
 
@@ -44,7 +46,7 @@ class ReservationPaymentsController < ApplicationController
     @user ||= User.find(payment_params[:user_id])
   end
 
-  def property 
+  def property
     @property ||= Property.find(payment_params[:property_id])
   end
 
