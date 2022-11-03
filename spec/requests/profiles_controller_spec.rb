@@ -9,4 +9,11 @@ RSpec.describe "ProfilesController", type: :request do
     before { get profile_path(profile) }
     it { expect(response).to have_http_status(:success) }
   end
+
+  context "PUT update" do
+    before{ put profile_path(profile), params: { profile: { first_name: "Jacob" } }
+    profile.reload
+    }
+    it { expect(profile.first_name).to eq("Jacob") }
+  end
 end

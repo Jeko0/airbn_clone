@@ -6,7 +6,9 @@ FactoryBot.define do
     address_1 { Faker::Address.street_address }
     city { Faker::Address.city }
     state { Faker::Address.state }
-    country { Faker::Address.country }
+    country_code { Faker::Address.country_code }
     average_rating {Faker::Number.decimal(l_digits: 1) }
+    latitude { 1.5 }
+    longitude { 1.5 }
   end
 end
