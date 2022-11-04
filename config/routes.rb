@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   resources :accounts, only: [:show, :update]
   resources :passwords, only: [:show, :update]
   resources :payments, only: :index
+  put "/hostify/:user_id", to: "hosts#update", as: :hostify
 end
  
