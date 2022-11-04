@@ -1,12 +1,13 @@
 class AccountsController < ApplicationController 
   before_action :authenticate_user!
+  before_action :set_user, only: [:show, :update]
 
   def show 
-    @user = current_user
+    authorize @user, policy_class: AccountPolicy
   end
 
   def update 
-    @user = User.find(params[:id])
+    authorize @user, policy_class: AccountPolicy
     @user.update(accoutn_params)
     redirect_to account_path(@user)
   end
@@ -15,5 +16,9 @@ class AccountsController < ApplicationController
 
   def accoutn_params 
     params.require(:account).permit(:email)
+  end
+  
+  def set_user 
+    @user = User.find(params[:id])
   end
 end
