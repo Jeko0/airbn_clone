@@ -1,9 +1,9 @@
 class ProfilePolicy < ApplicationPolicy
   def show? 
-    user == record
+    user.profile == record
   end
 
   def update? 
-    user == record
+    user.profile == record
   end
 end
