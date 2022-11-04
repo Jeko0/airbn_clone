@@ -14,11 +14,27 @@ class User < ApplicationRecord
   has_many :payments, through: :reservations
 
   after_create :create_profile 
+  
+    delegate :full_name, to: :profile
 
+  ROLES = %w[host]
+
+  validates :role, inclusion: { in: ROLES }, allow_nil: true
+  
   def create_profile 
     self.profile = Profile.new
     save!
   end
 
-  delegate :full_name, to: :profile
+  def host? 
+    role == "host"
+  end
+
+  def hostify! 
+    update!(role: "host")
+  end
+
+  def customer? 
+    role.blank?
+  end
 end
