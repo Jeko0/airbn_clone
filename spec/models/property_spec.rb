@@ -12,6 +12,7 @@ RSpec.describe Property, type: :model do
   end
 
   context "Associations" do
+    it { should belong_to(:user) } 
     it { should have_many_attached(:images) } 
     it { should have_many(:reviews) } 
     it { should have_many(:favorites).dependent(:destroy) } 
