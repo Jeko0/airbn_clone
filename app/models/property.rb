@@ -15,6 +15,8 @@ class Property < ApplicationRecord
   validates :state, presence: true
   validates :country_code, presence: true
 
+  belongs_to :user
+  
   has_many_attached :images, dependent: :destroy
 
   has_many :reviews, as: :reviewable
