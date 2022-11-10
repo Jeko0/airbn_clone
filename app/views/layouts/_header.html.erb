@@ -77,7 +77,10 @@
               name="search" 
               placeholder="Search" 
               type="search" 
-              class="block w-full border border-transparent roudned-md py-2 pl-10 pr-3 text-sm sm:text-sm hover:bg-gray-200 border-current shadow-2xl border-2 rounded-full">
+              class="block w-full border border-transparent roudned-md py-2 pl-10 pr-3 text-sm sm:text-sm hover:bg-gray-200 border-current shadow-2xl border-2 rounded-full"
+              data-header-target="search"
+              data-target-id="search-form"
+            >
           </div>
         </div>
       </div> 
@@ -140,3 +143,5 @@
     </div>
   </div>
 </nav>
+
+<%= render "shared/modal", modal_trigger_id: "search-form", modal_content: "properties/search_form", content_params: ""  %>
