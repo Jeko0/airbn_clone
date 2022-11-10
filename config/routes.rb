@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   namespace :host do 
     get "/dashboard", to: "dashboard#index", as: :dashboard
     resources :properties, only: [:new, :create]
+    resources :payments, only: :index
   end
 end
  
