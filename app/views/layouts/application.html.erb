@@ -10,9 +10,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag  asset_path("airbnb_favicon.png") %>
-    <% if controller_name == "properties" && action_name == "show" %>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker.min.css">
-    <% end %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker.min.css">
+
 
 
     <% if controller_name == "reservations" && action_name == "new" %>
