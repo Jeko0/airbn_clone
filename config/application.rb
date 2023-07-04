@@ -6,6 +6,10 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if ['development', 'test'].include? ENV['RAILS_ENV']
+  Dotenv::Railtie.load
+end
+
 module Airbnbclone
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -18,5 +22,10 @@ module Airbnbclone
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
+    config.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
+
+
   end
 end
